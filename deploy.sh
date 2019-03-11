@@ -1,1 +1,1 @@
-hugo && sshpass -p "htnhj1" rsync -avz --delete public/ youry@ai-r.info:~/docker/nginx/config/www
+
