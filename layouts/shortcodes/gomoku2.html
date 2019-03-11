@@ -1,0 +1,160 @@
+<style>
+    td {
+        background-color: #f9f9f9;
+        padding: 0px;
+    }
+
+    div.place {
+        min-width: 30px;
+        min-height: 30px;
+        padding: 0px;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- demo root element -->
+<div id="desk">
+    <demo-grid  :n="0" :busy=false :steps="stepsStart" :rows="gridData" :columns="gridColumns"></demo-grid>
+</div>
+
+<script>
+
+    Vue.component('desk-item', {
+        template: '<div :title="title" class="place"><img @click="sendClick" :src="image"></img></div>',
+        props: ['item'],
+        computed: {
+            image: function() {
+                return "/" + this.item.state + ".svg";
+            },
+            title: function() {
+                return JSON.stringify(this.item);
+            }
+        },
+        methods: {
+            set: function(state) {
+                this.item.state = state
+            },
+            sendClick: function() {
+                if (this.item.state > 0) return;
+
+                console.log('click on place');
+                this.$emit('step', this.item);
+            }
+        }
+    })
+
+    // register the grid component
+    Vue.component('demo-grid', {
+        template: `
+        <table>
+            <thead>
+                <tr>
+                    <th>*</th>
+                    <th v-for="key in columns">
+                        {{"{{ key }}"}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="entry in rows">
+                    <td v-text="entry['row']"></td>  
+                    <td v-for="key in columns">
+                        <desk-item :ref="'x'+ key + 'y' + entry['row']" @step="onStep" :item="entry[key]"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        `,
+        props: {
+            rows: Array,
+            columns: Array,
+            n: 0,
+            busy: false,
+            steps: {}
+        },
+        methods: {
+            onStep: function(item) {
+                if (this.busy) return;
+                console.log("step on grid " + JSON.stringify(item));
+
+                var my = this;
+                my.busy = true;
+
+                my.n++;
+                item.state = my.n % 2 + 1;
+                
+                my.steps.game.push([item.x, item.y]);
+                var request = JSON.stringify(my.steps);
+                console.log(request);
+                axios.post('https://ai-r.info/gomoku/api', request)
+                .then(function (response) {
+                    var last = response.data.game.pop();
+                    console.log(last);
+                    my.steps.game.push(last);
+                    my.steps.status = response.data.status;
+                    my.n++;
+                    console.log(JSON.stringify(my.steps));
+
+                    //console.log(my.$refs);
+
+                    my.$refs['x' + last[0] + 'y' + last[1]][0].set(my.n % 2 + 1)
+
+                    my.busy = false;
+
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+                
+            }
+        }
+    })
+
+    var columns = []
+    for (var j = 0; j < 15; j++)
+        columns.push(j)
+
+    var data = []
+    for (var i = 0; i < 15; i++) {
+        var row = { row: i }
+        for (var j = 0; j < 15; j++) {
+            var s  = (j == 7 && i == 7) ? 1 : 0
+            row[j] = { x: j, y: i, state: s };
+        }
+        data.push(row)
+    }
+
+
+    var demo = new Vue({
+        el: '#desk',
+        data: {
+            gridColumns: columns,
+            gridData: data,
+            stepsStart: {game: [[7, 7]], status: "play"}
+        }
+    })
+
+/*
+        Vue.component('desk-item', {
+            props: ['item'],
+            template: '<div v-html="item.state"></div>'
+        })
+    
+        var data = []
+        for (var i = 0; i < 15; i++)
+            for (var j = 0; j < 15; j++)
+                data.push({ x: i, y: j, state: 0 })
+    
+        new Vue({
+            el: '#desk',
+            data: {
+                places: data
+            }
+        })
+    */
+</script>
+

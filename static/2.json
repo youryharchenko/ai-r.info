@@ -1,0 +1,68 @@
+{
+    "body": {
+        "details": {
+            "patient": [
+                {
+                    "patientBirthDate": "1985-05-10T00:00:00",
+                    "patientID": 1112,
+                    "patientName": "Тестенко Тест Тестович"
+                }
+            ]
+        },
+        "patientDebt": [
+            {
+                "bookingActualPaymentValue": 63,
+                "bookingDate": "2018-05-31T15:00:00",
+                "bookingID": 1952327,
+                "bookingName": "Аланінамінотрансфераза (АЛТ, ALT)",
+                "debtBookingValue": 11,
+                "patientName": "Тестенко Тест Тестович",
+                "serviceVatRate": 0
+            },
+            {
+                "bookingActualPaymentValue": 1795.5,
+                "bookingDate": "2018-05-18T15:15:19.95",
+                "bookingID": 1952418,
+                "bookingName": "Внутрішньовенне введення озонованого натрію хлориду 0,9% (10 процедур) ПАКЕТ",
+                "debtBookingValue": 1794.5,
+                "patientName": "Тестенко Тест Тестович",
+                "serviceVatRate": 0
+            },
+            {
+                "bookingActualPaymentValue": 189,
+                "bookingDate": "2018-05-18T09:40:00",
+                "bookingID": 1952431,
+                "bookingName": "Внутрішньовенне введення озонованого натрію хлорид 0,9%",
+                "bookingUserList": "Аналізи",
+                "debtBookingValue": 188,
+                "patientName": "Тестенко Тест Тестович",
+                "serviceVatRate": 0
+            },
+            {
+                "bookingActualPaymentValue": 810,
+                "bookingDate": "2018-05-18T09:40:00",
+                "bookingID": 1952438,
+                "bookingName": "Пакет №10 (Здорове серце та судини + звіт з описом лабораторних показників) (Холестерин;Аланінамінотрансфераза (АЛТ, ALT);Аспартатамінотрансфераза (АСТ, AST);Креатинфосфокіназа (КФК загальна);Лактатдегідрогеназа (ЛДГ, LDH);Натрій (сироватка);C-реактивний білок (СРБ);Хлор (сироватка);Ліпопротеїди високої щільності (ЛПВЩ, HDL);Ліпопротеїди низької щільності (ЛПНЩ, LDL);Тригліцериди;Калій (сироватка);Ліпопротеїди дуже низької щільності (VLDL);Коефіцієнт атерогенності (КА);Гомоцистеїн;Примітка)",
+                "bookingUserList": "Аналізи",
+                "debtBookingValue": 809,
+                "patientName": "Тестенко Тест Тестович",
+                "serviceVatRate": 0
+            },
+            {
+                "bookingActualPaymentValue": 858,
+                "bookingDate": "2017-02-13T07:20:00",
+                "bookingID": 2111114,
+                "bookingName": "УЗИ при многоплодной беременности до 10 недель",
+                "bookingUserList": "Аналізи - спермограма (Левый берег)",
+                "debtBookingValue": 857,
+                "patientName": "Тестенко Тест Тестович",
+                "serviceVatRate": 0
+            }
+        ]
+    },
+    "command": "check",
+    "service": "medservices",
+    "status": 0,
+    "terminalId": "terminal",
+    "transactionId": "08e74847-5356-4604-8567-6417bbbc99b7"
+}
