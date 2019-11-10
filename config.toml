@@ -1,53 +1,10 @@
 baseURL = "https://ai-r.info/"
 languageCode = "en-us"
-title = "AI-R"
-theme = "ananke"
-# theme = "hugo_eiio"
-# theme = "blackburn"
-paginate=10 
-PaginatePath="page"
-pygmentsuseclasses = true
+title = "My New Hugo Site"
+theme = "hugo-theme-techdoc"
 
-[taxonomies]
-  category = "categories"
-  tag = "tags"
-
-[params]
-  description = "ai-r site"
-  author = "Dark Sider"
-  github ="https://github.com/youryharchenko"
-  gitlub = "https://gitlab.com/youry.in.ua"
-  securityPolicy = false #disable https content security policy
-  footerRight="Your tips content" #footer right content
-  addthisID="addthis.com sharder plugin id"
-
-[sitemap]
-  changefreq = "monthly"
-  priority = 0.5
-  filename = "sitemap.xml"
-
+# Global menu section
 [[menu.main]]
-    identifier = "about"
-    name = "about"
-    pre = "<i class='fa fa-heart'></i>"
-    url = "/about/"
-    weight = -110
-
-[[menu.main]]
-    name = "game"
-    pre = "<i class='fa fa-road'></i>"
-    url = "/game/"
-    weight = -100
-
-[[menu.main]]
-    name = "game2"
-    pre = "<i class='fa fa-road'></i>"
-    url = "/game2/"
-    weight = -95
-
-
-[[menu.main]]
-    name = "vue-probe"
-    pre = "<i class='fa fa-road'></i>"
-    url = "/vue-probe/"
-    weight = -90
+    name = "Home"
+    url = "/"
+    weight = 1
